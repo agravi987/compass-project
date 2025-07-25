@@ -35,26 +35,35 @@ export default function AnnouncementForm({ onAdd }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Add Announcement</h2>
+      <h2 className={styles.heading}>Add Announcement</h2>
       {error && <p className={styles.error}>{error}</p>}
+
       <input
+        className={styles.input}
         type="text"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+
       <textarea
+        className={styles.textarea}
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
+
       <input
+        className={styles.input}
         type="text"
         placeholder="Category"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       />
-      <button type="submit">Add</button>
+
+      <button className={styles.button} type="submit">
+        Add
+      </button>
     </form>
   );
 }

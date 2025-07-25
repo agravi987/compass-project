@@ -8,6 +8,7 @@ import "@/styles/Navbar.css";
 export default function Navbar() {
   const { data: session } = useSession();
   const router = useRouter();
+  const userRole = session?.user?.role;
 
   return (
     <nav className="navbar">
@@ -38,7 +39,8 @@ export default function Navbar() {
                 />
               )}
               <span className="profile-name">
-                {session.user?.name || "Student"}
+                {session.user?.name ||
+                  userRole.charAt(0).toUpperCase() + userRole.slice(1)}
               </span>
               <button className="btn btn-logout" onClick={() => signOut()}>
                 🚪 Logout

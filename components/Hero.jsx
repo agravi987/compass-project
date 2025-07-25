@@ -9,6 +9,7 @@ import Loader from "./Loader";
 export default function Hero() {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const userRole = session?.user?.role;
 
   if (status === "loading") {
     return <Loader content={"Loading your dashboard..."} />;
@@ -18,7 +19,10 @@ export default function Hero() {
     <section className="hero">
       {session ? (
         <p className="hero-welcome">
-          Welcome, {session.user.name || "Student"} 👋
+          Welcome,{" "}
+          {session.user?.name ||
+            userRole.charAt(0).toUpperCase() + userRole.slice(1)}{" "}
+          👋
         </p>
       ) : (
         <></>

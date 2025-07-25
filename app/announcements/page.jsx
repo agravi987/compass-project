@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import AnnouncementCard from "../../components/AnnouncementCard";
-import AnnouncementForm from "../../components/AnnouncementForm";
+
 import styles from "@/styles/Announcements.module.css";
 import { useSession } from "next-auth/react";
 
@@ -51,9 +51,7 @@ export default function AnnouncementsPage() {
   return (
     <div className={styles.container}>
       <h1>Campus Announcements Feed</h1>
-      {session?.user?.role === "admin" && (
-        <AnnouncementForm onAdd={handleAdd} />
-      )}
+
       <div className={styles.filters}>
         <select
           value={filterCategory}
