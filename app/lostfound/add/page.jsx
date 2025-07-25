@@ -18,7 +18,7 @@ function AllLostItem() {
 
   return (
     <div>
-      <h1>Report Lost or Found Item</h1>
+      <h1 style={{ textAlign: "center" }}>Report Lost or Found Item</h1>
       <LostFoundForm onAdd={handleAddItem} />
     </div>
   );

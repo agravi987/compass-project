@@ -19,13 +19,14 @@ export default function Navbar() {
       {/* Navigation Links */}
       <div className="navbar-links">
         <Link href="/"> Home</Link>
-        <Link href="/announcements"> Announcements</Link>
-        <Link href="/complaints"> Complaints</Link>
         {/* <Link href="/contacts"> Contact</Link> */}
 
         {session ? (
           <>
             <Link href="/dashboard"> Dashboard</Link>
+            <Link href="/announcements"> Announcements</Link>
+            <Link href="/complaints"> Complaints</Link>
+            <Link href="/lostfound">Lost & Found Items</Link>
 
             {/* ✅ Profile Section */}
             <div className="navbar-profile">

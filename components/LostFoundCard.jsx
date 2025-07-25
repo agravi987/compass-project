@@ -1,29 +1,40 @@
-import styles from "./LostFoundCard.module.css";
+import styles from "@/styles/LostFoundCard.module.css";
 
 export default function LostFoundCard({ item }) {
   return (
-    <div className={styles.card}>
-      {item.image && <img src={item.image} alt={item.title} className={styles.image} />}
-      <h3>{item.title}</h3>
-      <p>{item.description}</p>
-      <div className={styles.info}>
-        <span className={styles.category}>{item.category}</span>
-        <span className={styles.location}>📍 {item.location}</span>
-        <span className={styles.date}>{new Date(item.date).toLocaleDateString()}</span>
+    <div className={styles.cardContainer}>
+      {item.image && (
+        <img src={item.image} alt={item.title} className={styles.cardImage} />
+      )}
+
+      <h3 className={styles.cardTitle}>{item.title}</h3>
+
+      <p className={styles.cardDescription}>{item.description}</p>
+
+      <div className={styles.cardInfo}>
+        <span className={styles.cardCategory}>{item.category}</span>
+        <span className={styles.cardLocation}>📍 {item.location}</span>
+        <span className={styles.cardDate}>
+          {new Date(item.date).toLocaleDateString()}
+        </span>
       </div>
-      <div className={styles.contact}>
+
+      <div className={styles.cardContact}>
         {item.contact?.email && (
-          <a href={`mailto:${item.contact.email}`} className={styles.email}>
+          <a href={`mailto:${item.contact.email}`} className={styles.cardEmail}>
             {item.contact.email}
           </a>
         )}
         {item.contact?.phone && (
-          <a href={`tel:${item.contact.phone}`} className={styles.phone}>
+          <a href={`tel:${item.contact.phone}`} className={styles.cardPhone}>
             {item.contact.phone}
           </a>
         )}
       </div>
-      <small>Reported by: {item.reportedBy || "Anonymous"}</small>
+
+      <small className={styles.cardReporter}>
+        Reported by: {item.reportedBy || "Anonymous"}
+      </small>
     </div>
   );
 }

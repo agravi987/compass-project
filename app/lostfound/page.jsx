@@ -38,27 +38,32 @@ export default function LostFoundPage() {
 
   return (
     <div className={styles.container}>
-      <h1>Lost & Found Section</h1>
+      <div className={styles.heading}>Lost & Found Section</div>
+
       <div className={styles.tabs}>
         <button
-          className={type === "lost" ? styles.active : ""}
+          className={`${styles.tabButton} ${
+            type === "lost" ? styles.activeTab : ""
+          }`}
           onClick={() => setType("lost")}
         >
           Lost Items
         </button>
         <button
-          className={type === "found" ? styles.active : ""}
+          className={`${styles.tabButton} ${
+            type === "found" ? styles.activeTab : ""
+          }`}
           onClick={() => setType("found")}
         >
           Found Items
         </button>
       </div>
-      <LostFoundForm onAdd={handleAdd} />
+
       <div className={styles.filters}>
         <select
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
-          aria-label="Filter by category"
+          className={styles.select}
         >
           <option value="">All Categories</option>
           {[...new Set(items.map((i) => i.category))].map((cat) => (
@@ -67,26 +72,33 @@ export default function LostFoundPage() {
             </option>
           ))}
         </select>
+
         <input
           type="date"
           value={filterDate}
           onChange={(e) => setFilterDate(e.target.value)}
-          aria-label="Filter by date"
+          className={styles.dateInput}
         />
+
         <button
           onClick={() => {
             setFilterCategory("");
             setFilterDate("");
           }}
+          className={styles.clearButton}
         >
           Clear Filters
         </button>
       </div>
-      <div>
-        {filteredItems.length === 0 && <p>No items found.</p>}
-        {filteredItems.map((item) => (
-          <LostFoundCard key={item._id} item={item} />
-        ))}
+
+      <div className={styles.results}>
+        {filteredItems.length === 0 ? (
+          <div className={styles.noItems}>No items found.</div>
+        ) : (
+          filteredItems.map((item) => (
+            <LostFoundCard key={item._id} item={item} />
+          ))
+        )}
       </div>
     </div>
   );

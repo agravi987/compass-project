@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./LostFoundForm.module.css";
+import styles from "@/styles/LostFoundForm.module.css";
 
 export default function LostFoundForm({ onAdd }) {
   const [formData, setFormData] = useState({
@@ -45,13 +45,11 @@ export default function LostFoundForm({ onAdd }) {
       },
     };
 
-    // Remove separate email & phone from root
     delete payload.email;
     delete payload.phone;
 
     onAdd(payload);
 
-    // Reset form
     setFormData({
       title: "",
       description: "",
@@ -66,85 +64,108 @@ export default function LostFoundForm({ onAdd }) {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Report Lost/Found Item</h2>
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <h2 className={styles.heading}>Report Lost/Found Item</h2>
       {error && <p className={styles.error}>{error}</p>}
 
-      <label>
-        Title*
-        <input name="title" value={formData.title} onChange={handleChange} />
-      </label>
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Title*</label>
+        <input
+          className={styles.input}
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+      </div>
 
-      <label>
-        Description*
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Description*</label>
         <textarea
+          className={styles.textarea}
           name="description"
           value={formData.description}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label>
-        Category*
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Category*</label>
         <input
+          className={styles.input}
           name="category"
           value={formData.category}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label>
-        Image URL
-        <input name="image" value={formData.image} onChange={handleChange} />
-      </label>
-
-      <label>
-        Contact Email
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Image URL</label>
         <input
+          className={styles.input}
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Contact Email</label>
+        <input
+          className={styles.input}
           name="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label>
-        Contact Phone
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Contact Phone</label>
         <input
+          className={styles.input}
           name="phone"
           type="tel"
           value={formData.phone}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label>
-        Location*
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Location*</label>
         <input
+          className={styles.input}
           name="location"
           value={formData.location}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label>
-        Type*
-        <select name="type" value={formData.type} onChange={handleChange}>
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Type*</label>
+        <select
+          className={styles.select}
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+        >
           <option value="lost">Lost</option>
           <option value="found">Found</option>
         </select>
-      </label>
+      </div>
 
-      <label>
-        Reported By
+      <div className={styles.inputGroup}>
+        <label className={styles.label}>Reported By</label>
         <input
+          className={styles.input}
           name="reportedBy"
           value={formData.reportedBy}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <button type="submit">Submit</button>
+      <button className={styles.submitButton} type="submit">
+        Submit
+      </button>
     </form>
   );
 }

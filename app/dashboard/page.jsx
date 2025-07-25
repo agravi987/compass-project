@@ -5,11 +5,6 @@ import styles from "./dashboard.module.css";
 
 const features = [
   {
-    title: "Dashboard",
-    description: "Overview with recent activity, quick actions, counters",
-    path: "/dashboard",
-  },
-  {
     title: "Announcements Feed",
     description: "View and filter announcements by category and date",
     path: "/announcements",

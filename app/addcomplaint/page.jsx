@@ -3,12 +3,12 @@
 import React from "react";
 import axios from "axios";
 import ComplaintForm from "@/components/ComplaintForm";
+import styles from "./AddComplaint.module.css";
 
 function AddComplaint() {
   const handleAddComplaint = async (formData) => {
     try {
       const response = await axios.post("/api/complaints/", formData);
-
       alert("Complaint submitted successfully!");
     } catch (error) {
       console.error("Error submitting complaint:", error);
@@ -17,8 +17,8 @@ function AddComplaint() {
   };
 
   return (
-    <div>
-      <h1>Add Complaint</h1>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Add Complaint</h1>
       <ComplaintForm onAdd={handleAddComplaint} />
     </div>
   );

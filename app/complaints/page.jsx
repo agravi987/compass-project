@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import ComplaintCard from "../../components/ComplaintCard";
 import ComplaintForm from "../../components/ComplaintForm";
 import styles from "@/styles/Complaints.module.css";
+import { useRouter } from "next/navigation";
 
 export default function ComplaintsPage() {
   const [complaints, setComplaints] = useState([]);
   const [filterStatus, setFilterStatus] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     fetchComplaints();
@@ -52,13 +54,11 @@ export default function ComplaintsPage() {
       {!showForm && (
         <button
           className={styles.newComplaintBtn}
-          onClick={() => setShowForm(true)}
+          onClick={() => router.push("/addcomplaint")}
         >
           New Complaint
         </button>
       )}
-
-      {showForm && <ComplaintForm onAdd={handleAdd} />}
 
       <div className={styles.filters}>
         <button
