@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./TimetableGrid.module.css";
+import styles from "@/styles/TimetableGrid.module.css";
 
 export default function TimetableGrid({ entries, onEdit, days }) {
   // Group entries by day

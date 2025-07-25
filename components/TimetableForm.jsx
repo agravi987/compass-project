@@ -1,9 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./TimetableForm.module.css";
+import styles from "@/styles/TimetableForm.module.css";
 
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 const times = [
   "09:00 AM",
   "10:00 AM",
@@ -41,7 +49,9 @@ export default function TimetableForm({ onSave, onCancel, initialData }) {
         Day
         <select value={day} onChange={(e) => setDay(e.target.value)}>
           {days.map((d) => (
-            <option key={d} value={d}>{d}</option>
+            <option key={d} value={d}>
+              {d}
+            </option>
           ))}
         </select>
       </label>
@@ -49,21 +59,33 @@ export default function TimetableForm({ onSave, onCancel, initialData }) {
         Time
         <select value={time} onChange={(e) => setTime(e.target.value)}>
           {times.map((t) => (
-            <option key={t} value={t}>{t}</option>
+            <option key={t} value={t}>
+              {t}
+            </option>
           ))}
         </select>
       </label>
       <label>
         Subject*
-        <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
+        <input
+          type="text"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+        />
       </label>
       <label>
         Location
-        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
       </label>
       <div className={styles.buttons}>
         <button type="submit">{initialData ? "Update" : "Add"}</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );

@@ -1,85 +1,98 @@
 .container {
-  max-width: 400px;
-  margin: 3rem auto;
-  padding: 2rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.container h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.container .form {
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-body);
+  padding: 2rem;
+  color: var(--color-light-text);
 }
 
-.container label {
-  margin-bottom: 0.25rem;
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+}
+
+.form {
+  background-color: var(--color-bg-secondary);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  color: var(--color-light-text);
   font-weight: 500;
-  color: #555;
 }
 
-.container input {
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.input {
+  padding: 0.75rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
   font-size: 1rem;
+  background-color: #00152e;
+  color: var(--color-white);
 }
 
-.container input:focus {
-  outline: none;
-  border-color: #0070f3;
-  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.3);
+.input::placeholder {
+  color: #888;
 }
 
-.container .error {
-  color: #d32f2f;
+.submitButton {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.75rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.githubButton {
+  background-color: #24292e;
+  color: var(--color-white);
+  padding: 0.75rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.githubButton:hover {
+  background-color: #3b434a;
+}
+
+.error {
+  color: var(--color-danger);
   margin-bottom: 1rem;
-  font-weight: 500;
+  font-weight: bold;
   text-align: center;
 }
 
-.container .submitButton {
-  background-color: #0070f3;
-  color: white;
-  padding: 0.75rem;
+.divider {
+  margin: 2rem 0;
   border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.container .submitButton:hover {
-  background-color: #005bb5;
-}
-
-.container .divider {
-  margin: 1.5rem 0;
-  border: none;
-  border-top: 1px solid #eee;
-}
-
-.container .githubButton {
-  background-color: #333;
-  color: white;
-  padding: 0.75rem;
+  border-top: 1px solid #444;
   width: 100%;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.container .githubButton:hover {
-  background-color: #242424;
+  max-width: 400px;
 }

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -24,7 +24,6 @@ export default function SignInPage() {
     if (result.error) {
       setError(result.error);
     } else {
-      // Redirect to the home page or another page after successful sign-in
       router.push("/");
     }
   };
@@ -35,9 +34,13 @@ export default function SignInPage() {
 
   return (
     <div className={styles.container}>
-      <h1>Sign In</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label htmlFor="email">Email</label>
+        <h1 className={styles.heading} style={{ textAlign: "center" }}>
+          Sign In
+        </h1>
+        <label htmlFor="email" className={styles.label}>
+          Email
+        </label>
         <input
           id="email"
           type="email"
@@ -45,9 +48,12 @@ export default function SignInPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className={styles.input}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className={styles.label}>
+          Password
+        </label>
         <input
           id="password"
           type="password"
@@ -55,6 +61,7 @@ export default function SignInPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className={styles.input}
         />
 
         {error && <p className={styles.error}>{error}</p>}
