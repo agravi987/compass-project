@@ -1,88 +1,63 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
-import DashboardHeader from "@/components/DashboardHeader";
-import RecentActivity from "@/components/RecentActivity";
-import QuickActions from "@/components/QuickActions";
-import Counters from "@/components/Counters";
 import { useRouter } from "next/navigation";
+import styles from "./dashboard.module.css";
 
-export default function DashboardPage() {
-  const { data: session, status } = useSession();
+const features = [
+  {
+    title: "Dashboard",
+    description: "Overview with recent activity, quick actions, counters",
+    path: "/dashboard",
+  },
+  {
+    title: "Announcements Feed",
+    description: "View and filter announcements by category and date",
+    path: "/announcements",
+  },
+  {
+    title: "Lost & Found",
+    description: "Report and search lost/found items with images and filters",
+    path: "/lostfound",
+  },
+  {
+    title: "Weekly Timetable",
+    description: "Add, edit, delete classes shown in a grid view",
+    path: "/timetable",
+  },
+  {
+    title: "Hostel Complaints",
+    description: "Submit complaints and track status updates",
+    path: "/complaints",
+  },
+];
+
+export default function Home() {
   const router = useRouter();
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  if (!session) {
-    if (typeof window !== "undefined") {
-      window.location.href = "/auth/signin";
-    }
-    return null;
-  }
-
-  const { user } = session;
-
-  // Dummy data for demo
-  const recentActivities = [
-    "You submitted a complaint about hostel maintenance.",
-    "Admin posted a new announcement.",
-    "You reported a lost item.",
-  ];
-
-  const quickActions = [
-    {
-      label: "Submit Complaint",
-      onClick: () => router.push("/complaints/add"),
-    },
-    {
-      label: "Report Lost Item",
-      onClick: () => router.push("/lostfound/add"),
-    },
-    { label: "View Timetable", onClick: () => router.push("/timetable") },
-    {
-      label: "View Announcements",
-      onClick: () => router.push("/announcements"),
-    },
-  ];
-
-  const counters = [
-    { label: "Announcements", value: 12 },
-    { label: "Lost & Found Items", value: 5 },
-    { label: "Complaints", value: 3 },
-    { label: "Classes This Week", value: 20 },
-  ];
-
   return (
-    <div style={{ maxWidth: "900px", margin: "2rem auto", padding: "1rem" }}>
-      <DashboardHeader title={`Welcome, ${user.email}`} />
-
-      <Counters counters={counters} />
-
-      <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-        <div style={{ flex: "2 1 500px" }}>
-          <RecentActivity activities={recentActivities} />
-        </div>
-        <div style={{ flex: "1 1 250px" }}>
-          <QuickActions actions={quickActions} />
-        </div>
+    <main className={styles.main}>
+      <h1 className={styles.title}>
+        CampusLink - Centralized Student Utility Hub
+      </h1>
+      <div className={styles.grid}>
+        {features.map((feature) => (
+          <div
+            key={feature.title}
+            className={styles.card}
+            onClick={() => router.push(feature.path)}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                router.push(feature.path);
+              }
+            }}
+          >
+            <h2>{feature.title}</h2>
+            <p>{feature.description}</p>
+          </div>
+        ))}
       </div>
-
-      <button
-        onClick={() => signOut({ callbackUrl: "/auth/signin" })}
-        style={{
-          marginTop: "2rem",
-          padding: "0.5rem 1rem",
-          backgroundColor: "#0070f3",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Logout
-      </button>
-    </div>
+    </main>
   );
 }

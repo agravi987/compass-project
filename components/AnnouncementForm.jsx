@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./AnnouncementForm.module.css";
+import styles from "@/styles/AnnouncementForm.module.css";
 
 export default function AnnouncementForm({ onAdd }) {
   const [title, setTitle] = useState("");

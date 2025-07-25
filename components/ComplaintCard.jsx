@@ -1,4 +1,5 @@
-import styles from "./ComplaintCard.module.css";
+import Link from "next/link";
+import styles from "@/styles/ComplaintCard.module.css";
 
 export default function ComplaintCard({ complaint, onStatusChange }) {
   const handleChange = (e) => {
@@ -7,22 +8,21 @@ export default function ComplaintCard({ complaint, onStatusChange }) {
 
   return (
     <div className={styles.card}>
-      <h3>{complaint.title}</h3>
-      <p>{complaint.description}</p>
-      <div className={styles.info}>
-        <span className={styles.category}>{complaint.category}</span>
-        <span>Room: {complaint.room}</span>
-        <span>Hostel: {complaint.hostelBlock}</span>
-        <span>Date: {new Date(complaint.date).toLocaleDateString()}</span>
-        <span>By: {complaint.reportedBy || "Anonymous"}</span>
-      </div>
-      <div className={styles.status}>
-        <label>Status: </label>
-        <select value={complaint.status} onChange={handleChange}>
-          <option value="Pending">Pending</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Resolved">Resolved</option>
-        </select>
+      <h3 className={styles.title}>{complaint.title}</h3>
+
+      <p className={styles.description}>
+        {complaint.description.length > 100
+          ? complaint.description.slice(0, 100) + "..."
+          : complaint.description}
+      </p>
+
+      <div className={styles.actions}>
+        <Link
+          href={`/complaints/${complaint._id}`}
+          className={styles.viewButton}
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );

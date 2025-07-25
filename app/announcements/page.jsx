@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import AnnouncementCard from "../../components/AnnouncementCard";
 import AnnouncementForm from "../../components/AnnouncementForm";
-import styles from "./page.module.css";
+import styles from "@/styles/Announcements.module.css";
 import { useSession } from "next-auth/react";
 
 export default function AnnouncementsPage() {
@@ -41,14 +41,19 @@ export default function AnnouncementsPage() {
   const filteredAnnouncements = announcements.filter((a) => {
     return (
       (filterCategory ? a.category === filterCategory : true) &&
-      (filterDate ? new Date(a.date).toDateString() === new Date(filterDate).toDateString() : true)
+      (filterDate
+        ? new Date(a.date).toDateString() ===
+          new Date(filterDate).toDateString()
+        : true)
     );
   });
 
   return (
     <div className={styles.container}>
       <h1>Campus Announcements Feed</h1>
-      {session?.user?.role === "admin" && <AnnouncementForm onAdd={handleAdd} />}
+      {session?.user?.role === "admin" && (
+        <AnnouncementForm onAdd={handleAdd} />
+      )}
       <div className={styles.filters}>
         <select
           value={filterCategory}
@@ -68,15 +73,25 @@ export default function AnnouncementsPage() {
           onChange={(e) => setFilterDate(e.target.value)}
           aria-label="Filter by date"
         />
-        <button onClick={() => { setFilterCategory(""); setFilterDate(""); }}>
+        <button
+          onClick={() => {
+            setFilterCategory("");
+            setFilterDate("");
+          }}
+        >
           Clear Filters
         </button>
       </div>
       <div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {filteredAnnouncements.length === 0 && !error && <p>No announcements found.</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {filteredAnnouncements.length === 0 && !error && (
+          <p>No announcements found.</p>
+        )}
         {filteredAnnouncements.map((announcement) => (
-          <AnnouncementCard key={announcement._id} announcement={announcement} />
+          <AnnouncementCard
+            key={announcement._id}
+            announcement={announcement}
+          />
         ))}
       </div>
     </div>

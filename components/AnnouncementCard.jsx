@@ -1,4 +1,4 @@
-import styles from "./AnnouncementCard.module.css";
+import styles from "@/styles/AnnouncementCard.module.css";
 
 export default function AnnouncementCard({ announcement }) {
   return (

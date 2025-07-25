@@ -30,7 +30,7 @@ export default function SignInPage() {
   };
 
   const handleGitHubSignIn = () => {
-    signIn("github");
+    signIn("github", { callbackUrl: "/dashboard" });
   };
 
   return (
